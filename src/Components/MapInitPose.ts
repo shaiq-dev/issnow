@@ -8,7 +8,7 @@ const MapInitPose: React.FC  = () => {
     const map = useMap();
 
     useEffect(()=>{
-      axiosInstance.get('http://127.0.0.1:8000/api/pose/', {
+      axiosInstance.get('/api/pose/', {
           headers: {
             "Content-Type": "application/json"
           },
