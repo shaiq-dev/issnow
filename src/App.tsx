@@ -19,7 +19,7 @@ const App : React.FC = () => {
   const [satellitePose, setSatellitePose] = useState<LatLngExpression>([0,0]);
 
   useEffect(()=> {
-    const source = new EventSource('http://127.0.0.1:8000/api/stream')
+    const source = new EventSource(store.serverURL + '/api/stream')
     
     source.onmessage = (e) => {
       const data = JSON.parse(e.data)
@@ -30,9 +30,9 @@ const App : React.FC = () => {
       });
     }
 
-    // source.onerror = (e) => {
-    //   console.log(e)
-    // }
+    source.onerror = (e) => {
+      console.log(e)
+    }
   }, [])
 
   
