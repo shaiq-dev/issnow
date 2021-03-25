@@ -4,7 +4,9 @@ import styled from 'styled-components'
 
 const IssAboveMe : React.FC = () => {
     
+     // eslint-disable-next-line
     const [coordinates, setCoordinates] = useState<Coordinates | null>(null)
+     // eslint-disable-next-line
     const [error, setError] = useState<string | null>(null);
    
     const handleClick = () => {
