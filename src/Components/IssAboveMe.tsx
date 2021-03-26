@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import styled from 'styled-components'
+import { Coordinates } from '../types/issnow';
 
 
 const IssAboveMe : React.FC = () => {

@@ -5,8 +5,13 @@ import {ReactComponent as SatelliteIcon} from '../assets/rocket-launch.svg'
 import IssStats from './IssStats'
 import IssAboveMe from './IssAboveMe'
 import SocialConnect from './SocialConnect'
+import { StatsProps } from '../types/issnow';
 
-const Controller : React.FC = () => {
+type ControllerProps = {
+    stats : StatsProps
+}
+
+const Controller : React.FC<ControllerProps> = ({stats} : ControllerProps) => {
 
     const [visible, setVisible] = useState<boolean>(false);
 
@@ -16,7 +21,7 @@ const Controller : React.FC = () => {
             <SatelliteIcon />
         </ShowControlsButton>
         <ControlPanel style={{ transform: `translateX(${visible ? '0' : '100%'})`}}>
-            <IssStats />
+            <IssStats coords={stats.coords} altitude={stats.altitude} velocity={stats.velocity} />
             <IssAboveMe />
             <SocialConnect />
         </ControlPanel>

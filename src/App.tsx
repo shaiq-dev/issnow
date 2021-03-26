@@ -9,6 +9,7 @@ import MapInitPose from './Components/MapInitPose'
 import Satellite from './Utils/Satellite'
 import Controller from './Components/Controller'
 import store from './store';
+import { StatsProps } from './types/issnow';
 
 const App : React.FC = () => {
 
@@ -17,6 +18,11 @@ const App : React.FC = () => {
 
   const [path, setPath] = useState<LatLngExpression[]>([]);
   const [satellitePose, setSatellitePose] = useState<LatLngExpression>([0,0]);
+  const [stats, setStats] = useState<StatsProps>({
+    coords: [0.0000, 0.0000],
+    altitude: 421,
+    velocity: 32413
+  })
 
   useEffect(()=> {
     const source = new EventSource(store.serverURL + '/api/stream')
@@ -28,6 +34,11 @@ const App : React.FC = () => {
       setPath(prevPath => {
         return [...prevPath, newPosition];
       });
+      setStats({
+        coords: [data.latitude, data.longitude],
+        altitude: Number.parseInt(data.altitude),
+        velocity: Number.parseInt(data.velocity)
+      })
     }
 
     source.onerror = (e) => {
@@ -40,7 +51,7 @@ const App : React.FC = () => {
     <>
       <GlobalStyles />
       <IssNowWrapper>
-        <Controller />
+        <Controller stats={stats} />
         <MapContainer center={position} zoom={zoom} scrollWheelZoom={false} style={{height: '100%'}}>
           <MapInitPose />
           <TileLayer
