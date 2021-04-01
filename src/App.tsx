@@ -68,7 +68,7 @@ const App : React.FC = () => {
         </MapContainer>
       </IssNowWrapper>
     </>
-  );  
+  );
 }
 
 export default App;
