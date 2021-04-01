@@ -26,7 +26,7 @@ const App : React.FC = () => {
 
   useEffect(()=> {
     const source = new EventSource(store.serverURL + '/api/stream')
-    
+
     source.onmessage = (e) => {
       const data = JSON.parse(e.data)
       const newPosition : LatLngExpression = [data.latitude, data.longitude]
@@ -46,7 +46,7 @@ const App : React.FC = () => {
     }
   }, [])
 
-  
+
   return (
     <>
       <GlobalStyles />
@@ -68,7 +68,7 @@ const App : React.FC = () => {
         </MapContainer>
       </IssNowWrapper>
     </>
-  );  
+  );
 }
 
 export default App;
